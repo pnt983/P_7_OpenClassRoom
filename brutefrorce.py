@@ -1,6 +1,7 @@
 from itertools import combinations
 from utils import get_actions_objects_from_csv, during_time
-
+from memory_profiler import profile
+import cProfile
 
 @during_time
 def get_all_combinations(data):
@@ -12,7 +13,7 @@ def get_all_combinations(data):
             all_combi.append(combi)
     return all_combi
 
-
+# @profile
 @during_time
 def create_list_profit(all_combi):
     results_list = []

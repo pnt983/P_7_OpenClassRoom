@@ -1,20 +1,16 @@
 from utils import get_actions_objects_from_csv, during_time
+from memory_profiler import profile
+import cProfile
 
 
-def get_sorted_percent(csv):
-    """Get csv and sort by percent"""
-    actions_list = get_actions_objects_from_csv(csv)
-    # actions_list.sort(key=lambda action: action.percent, reverse=True)
-    return actions_list
-
-
+# @profile
 @during_time
 def get_best_invest(csv_file):
-    csv_list_sorted = get_actions_objects_from_csv(csv_file, sort_list=True)
+    actions_list_sorted = get_actions_objects_from_csv(csv_file, sort_list=True)
     action_name = ""
     total_cost = 0
     total_profit = 0
-    for action in csv_list_sorted:
+    for action in actions_list_sorted:
         if total_cost + action.cost > 500:
             continue
         elif total_cost < 500:
@@ -27,7 +23,8 @@ def get_best_invest(csv_file):
 
 
 def main():
-    get_best_invest("data_files/dataset2.csv")
+    # get_best_invest("data_files/dataset1.csv")
+    cProfile.run('get_best_invest("data_files/dataset1.csv")') 
 
 
 if __name__ == "__main__":
