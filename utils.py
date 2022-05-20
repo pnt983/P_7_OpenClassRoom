@@ -21,7 +21,7 @@ percent: {self.percent}%, profit: {self.profit}"
 def get_actions_objects_from_csv(file_name, sort_list=False):
     """Return a list of Action object from a csv file"""
     actions = []
-    with open(file_name, "r", encoding="utf8", newline="") as csv_file:
+    with open(file_name, encoding="utf8", newline="") as csv_file:
         reader = csv.reader(csv_file, delimiter=",")
         for row in reader:
             cost = float(row[1])

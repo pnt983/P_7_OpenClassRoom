@@ -3,9 +3,10 @@ from memory_profiler import profile
 import cProfile
 
 
-# @profile
-@during_time
+@profile
+# @during_time
 def get_best_invest(csv_file):
+    rapport_list = []
     actions_list_sorted = get_actions_objects_from_csv(csv_file, sort_list=True)
     action_name = ""
     total_cost = 0
@@ -17,9 +18,11 @@ def get_best_invest(csv_file):
             action_name += action.name
             total_cost += action.cost
             total_profit += action.profit
+            rapport_list.append([action.name, action.cost, action.percent, action.profit])
         else:
             break
     print("Resultat: ", action_name, total_cost, total_profit)
+    print(rapport_list)
 
 
 def main():

@@ -3,6 +3,8 @@ from utils import get_actions_objects_from_csv, during_time
 from memory_profiler import profile
 import cProfile
 
+
+# @profile
 @during_time
 def get_all_combinations(data):
     """Return all combination possible from a list"""
@@ -34,7 +36,7 @@ def create_list_profit(all_combi):
     results_list.sort(key=lambda i: i["profit"], reverse=True)
     return results_list
 
-
+@profile
 def main():
     file_csv = get_actions_objects_from_csv("data_files/20_actions.csv")
     all_combinaison = get_all_combinations(file_csv)
@@ -44,3 +46,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # cProfile.run("main()")
